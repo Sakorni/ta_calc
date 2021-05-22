@@ -1,19 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:ta_calc/ui/num_pad_delegate.dart';
 import 'button/button.dart';
 import 'buttonHandler.dart';
 
 class NumPad extends StatelessWidget {
+  final NumPadDelegate handler;
+  NumPad({required this.handler});
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         InputField(),
-        SizedBox(height: 400, child: CalcButtons()),
+        Expanded(
+          child: CalcButtons(
+            addPressed: handler.addPressed,
+            deletePressed: handler.deletePressed,
+            numberPressed: handler.numberPressed,
+          ),
+        ),
         Padding(
           padding: EdgeInsets.all(20),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              CalculatorButton(
+                label: 'C',
+                onTap: MainHandler().deleteAllPressed,
+              ),
               CalculatorButton(
                 label: '=',
                 onTap: MainHandler().calculate,
@@ -61,16 +74,23 @@ class _InputFieldState extends State<InputField> {
 }
 
 class CalcButtons extends StatelessWidget {
+  final NumberHandler numberPressed;
+  final AddHandler addPressed;
+  final DeleteHandler deletePressed;
+  CalcButtons(
+      {required this.numberPressed,
+      required this.addPressed,
+      required this.deletePressed});
+
   @override
   Widget build(BuildContext context) {
-    var handler = MainHandler();
     List<Widget> buttons = [];
     for (var number = 7; number < 10; number++) {
       buttons.add(
         CalculatorButton(
           label: number.toString(),
           onTap: () {
-            handler.numberPressed(number);
+            numberPressed(number);
           },
         ),
       );
@@ -80,7 +100,7 @@ class CalcButtons extends StatelessWidget {
         CalculatorButton(
           label: number.toString(),
           onTap: () {
-            handler.numberPressed(number);
+            numberPressed(number);
           },
         ),
       );
@@ -90,7 +110,7 @@ class CalcButtons extends StatelessWidget {
         CalculatorButton(
           label: number.toString(),
           onTap: () {
-            handler.numberPressed(number);
+            numberPressed(number);
           },
         ),
       );
@@ -98,21 +118,21 @@ class CalcButtons extends StatelessWidget {
     buttons.add(
       CalculatorButton(
         label: ',',
-        onTap: handler.addPressed,
+        onTap: addPressed,
       ),
     );
     buttons.add(
       CalculatorButton(
         label: '0',
         onTap: () {
-          handler.numberPressed(0);
+          numberPressed(0);
         },
       ),
     );
     buttons.add(
       CalculatorButton(
         label: '⌫',
-        onTap: handler.deletePressed,
+        onTap: deletePressed,
       ),
     );
     return GridView.count(
