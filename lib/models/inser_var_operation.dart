@@ -1,8 +1,8 @@
-import 'package:ta_calc/models/var_line.dart';
+import 'package:ta_calc/models/var_operation.dart';
 
-class InsertVarLine extends VarLine {
+class InsertVarOpeartion extends VarOpeartion {
   int value;
-  InsertVarLine({
+  InsertVarOpeartion({
     required int lineIndex,
     required int varIndex,
     this.value = 1,
@@ -21,12 +21,12 @@ class InsertVarLine extends VarLine {
   }
 
   @override
-  String getLineView() {
+  String getOpeartionView() {
     return "$position:${_getVarView()}<-$value";
   }
 
   @override
-  List<int> getNumberLine() {
+  List<int> getNumberOpeartion() {
     return [weight, position, varIndex, value];
   }
 }

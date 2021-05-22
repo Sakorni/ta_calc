@@ -1,8 +1,8 @@
-import 'package:ta_calc/models/reg_line.dart';
+import 'package:ta_calc/models/reg_operation.dart';
 
-abstract class VarLine extends RegLine {
+abstract class VarOpeartion extends RegOpeartion {
   int varIndex = 0;
-  VarLine({
+  VarOpeartion({
     required int position,
     required int weight,
     required this.varIndex,
