@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ta_calc/models/calculator.dart';
+import 'package:ta_calc/ui/num_pad_delegate.dart';
 
-class MainHandler {
+class MainHandler implements NumPadDelegate {
   static MainHandler _instance = MainHandler._();
   TextEditingController controller = TextEditingController();
 
@@ -38,7 +40,7 @@ class MainHandler {
 
   void deletePressed() {
     if (values.isNotEmpty) {
-      if (values.last == 0) {
+      if (values.last ~/ 10 == 0) {
         values.removeLast();
       } else {
         int changeableValue = values.last;
@@ -49,17 +51,21 @@ class MainHandler {
     _changeText();
   }
 
+  void deleteAllPressed() {
+    values.clear();
+    _changeText();
+  }
+
   void addPressed() {
     values.add(0);
     _changeText();
   }
 
   void calculate() {
-    //TODO calculate че-то там
-    var result = 0;
+    var calc = Calculator();
+    var res = calc.encode(values);
     values.clear();
-    values.add(result);
-    _changeText();
+    controller.text = res.toString();
   }
 
   void _changeText() {
