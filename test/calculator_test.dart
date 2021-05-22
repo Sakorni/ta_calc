@@ -7,13 +7,13 @@ void main() {
     () {
       Calculator calc = Calculator();
       expect(
-        calc.getCode(
+        calc.encode(
           [1, 2, 1, 1],
         ),
         132300,
       );
       expect(
-        calc.getCode(
+        calc.encode(
           [4, 1, 2, 3, 2],
         ),
         115046316000,
