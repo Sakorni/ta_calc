@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ta_calc/ui/calcPage/calcPage.dart';
 import 'package:ta_calc/ui/operations_decode_page/operations_decode_page.dart';
 
 void main() {
