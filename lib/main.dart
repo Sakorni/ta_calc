@@ -28,10 +28,11 @@ class MyHomePage extends StatelessWidget {
         title: Text('ТА калькулятор'),
         backgroundColor: Colors.green,
       ),
-      body: NumPad(
-        onDone: (_) {},
-        calcMode: CalcMode.decode,
-      ),
+      body: OperationsDecodePage(),
+      // body: NumPad(
+      //   onDone: (_) {},
+      //   calcMode: CalcMode.decode,
+      // ),
       // body: NumPad(),
     );
   }

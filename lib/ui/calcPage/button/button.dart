@@ -19,10 +19,11 @@ class CalculatorButton extends StatelessWidget {
       child: TextButton(
         onPressed: onTap,
         child: Center(
-            child: Text(
-          label,
-          style: TextStyle(fontSize: 24, color: Colors.black),
-        )),
+          child: Text(
+            label,
+            style: TextStyle(fontSize: 24, color: Colors.black),
+          ),
+        ),
       ),
     );
   }

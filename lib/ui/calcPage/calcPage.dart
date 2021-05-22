@@ -51,7 +51,7 @@ class _InputFieldState extends State<InputField> {
 
   @override
   void didChangeDependencies() {
-    provider = context.read<CalcPageProvider>();
+    provider = context.watch<CalcPageProvider>();
     super.didChangeDependencies();
   }
 
