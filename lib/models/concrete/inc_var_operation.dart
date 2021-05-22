@@ -1,4 +1,4 @@
-import 'package:ta_calc/models/value_var_operation.dart';
+import 'package:ta_calc/models/abstract/value_var_operation.dart';
 
 ///Presentation of increment operation [x + value]
 class IncVarOpeartion extends ValVarOpeartion {

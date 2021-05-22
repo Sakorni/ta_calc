@@ -1,4 +1,4 @@
-import 'package:ta_calc/models/value_var_operation.dart';
+import 'package:ta_calc/models/abstract/value_var_operation.dart';
 
 /// Presents the var - value operation
 class DecVarOperation extends ValVarOpeartion {
