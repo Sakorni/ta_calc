@@ -1,12 +1,17 @@
-import 'package:ta_calc/models/var_operation.dart';
+import 'package:ta_calc/models/value_var_operation.dart';
 
-class IncVarOpeartion extends VarOpeartion {
-  int value;
+class IncVarOpeartion extends ValVarOpeartion {
   IncVarOpeartion({
     required int lineIndex,
     required int varIndex,
-    this.value = 1,
-  }) : super(position: lineIndex, varIndex: varIndex, weight: 2);
+    int value = 1,
+  }) : super(
+          operationSymbol: "+",
+          position: lineIndex,
+          varIndex: varIndex,
+          weight: 2,
+          value: value,
+        );
 
   @override
   String getOpeartionView() {
