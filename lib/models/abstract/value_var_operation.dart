@@ -13,10 +13,9 @@ abstract class ValVarOpeartion extends VarOpeartion {
     required String operationSymbol,
   })  : _operationSymbol = operationSymbol,
         super(position: position, varIndex: varIndex, weight: weight);
-
   @override
   List<int> getNumberOpeartion() {
-    return [weight, position, varIndex, value];
+    return [weight, position, varIndex];
   }
 
   @override

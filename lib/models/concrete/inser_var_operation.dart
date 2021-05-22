@@ -13,4 +13,9 @@ class InsertVarOpeartion extends ValVarOpeartion {
           value: value,
           weight: 1,
         );
+
+  @override
+  List<int> getNumberOpeartion() {
+    return [...super.getNumberOpeartion(), value];
+  }
 }
