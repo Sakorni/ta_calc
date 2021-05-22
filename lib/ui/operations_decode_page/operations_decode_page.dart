@@ -3,10 +3,22 @@ import 'package:provider/provider.dart';
 import 'package:ta_calc/ui/operations_decode_page/decode_provider.dart';
 import 'package:ta_calc/ui/operations_decode_page/widgets/result_window.dart';
 
-class OperationsDecodePage extends StatelessWidget {
+class OperationsDecodePage extends StatefulWidget {
+  @override
+  _OperationsDecodePageState createState() => _OperationsDecodePageState();
+}
+
+class _OperationsDecodePageState extends State<OperationsDecodePage> {
+  final DecodeProvider provider = DecodeProvider();
+
+  @override
+  void dispose() {
+    provider.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    DecodeProvider provider = DecodeProvider();
     return ChangeNotifierProvider.value(
       value: provider,
       child: Column(
