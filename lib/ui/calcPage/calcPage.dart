@@ -47,12 +47,6 @@ class InputField extends StatefulWidget {
 class _InputFieldState extends State<InputField> {
   TextEditingController controller = MainHandler().controller;
 
-  // @override
-  // void didChangeDependencies() {
-  //   controller.text = MainHandler().valuesAsString();
-  //   super.didChangeDependencies();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
