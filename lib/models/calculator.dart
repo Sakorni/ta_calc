@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:ta_calc/resources/constants.dart';
+import 'package:ta_calc/resources/exceptions.dart';
 
 ///Main computing entity for those codes
 class Calculator {
@@ -19,6 +20,9 @@ class Calculator {
 
     for (int i = 0; code != BigInt.one; ++i) {
       int counter = 0;
+      if (BigInt.from(primes[i]) > code) {
+        throw InvalidCode();
+      }
       while (code % BigInt.from(primes[i]) == BigInt.zero) {
         code ~/= BigInt.from(primes[i]);
         counter++;
