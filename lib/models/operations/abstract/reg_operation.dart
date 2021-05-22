@@ -1,8 +1,8 @@
-import 'package:ta_calc/models/concrete/dec_var_operation.dart';
-import 'package:ta_calc/models/concrete/if_operation.dart';
-import 'package:ta_calc/models/concrete/inc_var_operation.dart';
-import 'package:ta_calc/models/concrete/inser_var_operation.dart';
-import 'package:ta_calc/models/concrete/stop_operation.dart';
+import 'package:ta_calc/models/operations/concrete/dec_var_operation.dart';
+import 'package:ta_calc/models/operations/concrete/if_operation.dart';
+import 'package:ta_calc/models/operations/concrete/inc_var_operation.dart';
+import 'package:ta_calc/models/operations/concrete/inser_var_operation.dart';
+import 'package:ta_calc/models/operations/concrete/stop_operation.dart';
 
 abstract class RegOpeartion {
   ///Position of this opeartion in a programm

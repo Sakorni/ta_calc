@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'calcPage/calcPage.dart';
+import 'package:ta_calc/ui/calcPage/calcPage.dart';
 
 void main() {
   runApp(MyApp());

@@ -1,4 +1,4 @@
-import 'package:ta_calc/models/abstract/var_operation.dart';
+import 'package:ta_calc/models/operations/abstract/var_operation.dart';
 
 class IfOperation extends VarOpeartion {
   ///Index of an operation if condition is true

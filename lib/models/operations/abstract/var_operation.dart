@@ -1,4 +1,4 @@
-import 'package:ta_calc/models/abstract/reg_operation.dart';
+import 'package:ta_calc/models/operations/abstract/reg_operation.dart';
 
 abstract class VarOpeartion extends RegOpeartion {
   int varIndex = 0;

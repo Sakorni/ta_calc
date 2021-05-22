@@ -1,4 +1,4 @@
-import 'package:ta_calc/models/abstract/var_operation.dart';
+import 'package:ta_calc/models/operations/abstract/var_operation.dart';
 
 ///Contains Inc Dec and Ins value
 abstract class ValVarOpeartion extends VarOpeartion {
