@@ -1,5 +1,6 @@
 import 'package:ta_calc/models/value_var_operation.dart';
 
+///Presentation of insert operation [x <- value]
 class InsertVarOpeartion extends ValVarOpeartion {
   InsertVarOpeartion({
     required int lineIndex,

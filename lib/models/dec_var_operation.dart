@@ -13,16 +13,4 @@ class DecVarOperation extends ValVarOpeartion {
           weight: 3,
           value: value,
         );
-
-  @override
-  List<int> getNumberOpeartion() {
-    // TODO: implement getNumberOpeartion
-    throw UnimplementedError();
-  }
-
-  @override
-  String getOpeartionView() {
-    // TODO: implement getOpeartionView
-    throw UnimplementedError();
-  }
 }

@@ -1,5 +1,6 @@
 import 'package:ta_calc/models/value_var_operation.dart';
 
+///Presentation of increment operation [x + value]
 class IncVarOpeartion extends ValVarOpeartion {
   IncVarOpeartion({
     required int lineIndex,
@@ -12,16 +13,4 @@ class IncVarOpeartion extends ValVarOpeartion {
           weight: 2,
           value: value,
         );
-
-  @override
-  String getOpeartionView() {
-    // TODO: implement getOpeartionView
-    throw UnimplementedError();
-  }
-
-  @override
-  List<int> getNumberOpeartion() {
-    // TODO: implement getNumberOpeartion
-    throw UnimplementedError();
-  }
 }
