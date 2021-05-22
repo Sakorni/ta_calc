@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 class CalculatorButton extends StatelessWidget {
   CalculatorButton({
     required this.label,
-    required this.onTap,
+    this.onTap,
   });
   final String label;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   @override
   Widget build(BuildContext context) {
     return Ink(
@@ -14,7 +14,7 @@ class CalculatorButton extends StatelessWidget {
         boxShadow: [
           BoxShadow(color: Colors.grey, offset: Offset(1, 1), blurRadius: 2),
         ],
-        color: Colors.white,
+        color: onTap != null ? Colors.white : Colors.grey[350],
       ),
       child: TextButton(
         onPressed: onTap,

@@ -1,40 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:ta_calc/ui/num_pad_delegate.dart';
+import 'package:provider/provider.dart';
+import 'package:ta_calc/resources/enums.dart';
+import 'package:ta_calc/ui/calcPage/calc_page_provider.dart';
 import 'button/button.dart';
-import 'buttonHandler.dart';
 
 class NumPad extends StatelessWidget {
-  final NumPadDelegate handler;
-  NumPad({required this.handler});
+  final void Function(String) onDone;
+  final CalcMode calcMode;
+  NumPad({required this.onDone, required this.calcMode});
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        InputField(),
-        Expanded(
-          child: CalcButtons(
-            addPressed: handler.addPressed,
-            deletePressed: handler.deletePressed,
-            numberPressed: handler.numberPressed,
+    var provider = CalcPageProvider(onDone: onDone, calcMode: calcMode);
+    return ChangeNotifierProvider.value(
+      value: provider,
+      child: Column(
+        children: [
+          InputField(),
+          Expanded(
+            child: CalcButtons(),
           ),
-        ),
-        Padding(
-          padding: EdgeInsets.all(20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              CalculatorButton(
-                label: 'C',
-                onTap: MainHandler().deleteAllPressed,
-              ),
-              CalculatorButton(
-                label: '=',
-                onTap: MainHandler().calculate,
-              ),
-            ],
+          Padding(
+            padding: EdgeInsets.all(20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                CalculatorButton(
+                  label: 'C',
+                  onTap: provider.deleteAllPressed,
+                ),
+                CalculatorButton(
+                  label: '=',
+                  onTap: provider.calculate,
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -45,46 +47,49 @@ class InputField extends StatefulWidget {
 }
 
 class _InputFieldState extends State<InputField> {
-  TextEditingController controller = MainHandler().controller;
+  late CalcPageProvider provider;
+
+  @override
+  void didChangeDependencies() {
+    provider = context.read<CalcPageProvider>();
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(20),
-      child: TextFormField(
-        decoration: InputDecoration(
-          contentPadding:
-              EdgeInsets.symmetric(vertical: 25.0, horizontal: 10.0),
-          disabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black, width: 2.0),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.black,
+            width: 2.0,
           ),
         ),
-        controller: controller,
-        enabled: false,
-        readOnly: true,
+        child: Text(
+          provider.value,
+          style: TextStyle(
+            fontSize: 25,
+          ),
+        ),
       ),
     );
   }
 }
 
 class CalcButtons extends StatelessWidget {
-  final NumberHandler numberPressed;
-  final AddHandler addPressed;
-  final DeleteHandler deletePressed;
-  CalcButtons(
-      {required this.numberPressed,
-      required this.addPressed,
-      required this.deletePressed});
-
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<CalcPageProvider>(context, listen: false);
     List<Widget> buttons = [];
     for (var number = 7; number < 10; number++) {
       buttons.add(
         CalculatorButton(
           label: number.toString(),
           onTap: () {
-            numberPressed(number);
+            provider.numberPressed(number.toString());
           },
         ),
       );
@@ -94,7 +99,7 @@ class CalcButtons extends StatelessWidget {
         CalculatorButton(
           label: number.toString(),
           onTap: () {
-            numberPressed(number);
+            provider.numberPressed(number.toString());
           },
         ),
       );
@@ -104,7 +109,7 @@ class CalcButtons extends StatelessWidget {
         CalculatorButton(
           label: number.toString(),
           onTap: () {
-            numberPressed(number);
+            provider.numberPressed(number.toString());
           },
         ),
       );
@@ -112,21 +117,22 @@ class CalcButtons extends StatelessWidget {
     buttons.add(
       CalculatorButton(
         label: ',',
-        onTap: addPressed,
+        onTap:
+            provider.calcMode == CalcMode.encode ? provider.addPressed : null,
       ),
     );
     buttons.add(
       CalculatorButton(
         label: '0',
         onTap: () {
-          numberPressed(0);
+          provider.numberPressed('0');
         },
       ),
     );
     buttons.add(
       CalculatorButton(
         label: '⌫',
-        onTap: deletePressed,
+        onTap: provider.deletePressed,
       ),
     );
     return GridView.count(

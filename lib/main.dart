@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ta_calc/ui/calcPage/buttonHandler.dart';
+import 'package:ta_calc/resources/enums.dart';
 import 'package:ta_calc/ui/calcPage/calcPage.dart';
+import 'package:ta_calc/ui/operations_decode_page/operations_decode_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,7 +28,10 @@ class MyHomePage extends StatelessWidget {
         title: Text('ТА калькулятор'),
         backgroundColor: Colors.green,
       ),
-      body: NumPad(handler: MainHandler()),
+      body: NumPad(
+        onDone: (_) {},
+        calcMode: CalcMode.decode,
+      ),
       // body: NumPad(),
     );
   }

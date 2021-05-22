@@ -1,0 +1,1 @@
+enum CalcMode { encode, decode }
