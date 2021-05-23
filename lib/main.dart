@@ -4,13 +4,10 @@ import 'package:ta_calc/models/decoder/code_to_list_and_operation_decoder.dart';
 import 'package:ta_calc/models/decoder/code_to_list_decoder.dart';
 import 'package:ta_calc/models/decoder/list_to_code_decoder.dart';
 import 'package:ta_calc/resources/enums.dart';
+import 'package:ta_calc/resources/strings.dart';
 import 'package:ta_calc/ui/operations_decode_page/operations_decode_page.dart';
 
 void main() {
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
   runApp(MyApp());
 }
 
@@ -27,6 +24,13 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
+      builder: (context, child) {
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.portraitUp,
+          DeviceOrientation.portraitDown,
+        ]);
+        return child!;
+      },
       home: MyHomePage(),
     );
   }
@@ -50,7 +54,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<String> titles = [];
+  final List<String> titles = [
+    AppStrings.listToCode,
+    AppStrings.codeToList,
+    AppStrings.codeToOpers,
+  ];
 
   final Widget listToCode = OperationsDecodePage(
     calcMode: CalcMode.encode,
@@ -84,6 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onItemTapped: changeIndex,
       ),
       appBar: AppBar(
+        //TODO: Добавить инфостраницу, где будут перечислены простые числа (вдруг челу захочется) и правила преобразования операции в код, мол, какой что соответствует и прочее
         title: Text(titles[index]),
         backgroundColor: Colors.green,
       ),
