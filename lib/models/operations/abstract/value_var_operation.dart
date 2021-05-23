@@ -19,7 +19,7 @@ abstract class ValVarOpeartion extends VarOpeartion {
   }
 
   @override
-  String getOpeartionView() {
+  String toString() {
     return "$position: ${getVarView()} $_operationSymbol $value";
   }
 }

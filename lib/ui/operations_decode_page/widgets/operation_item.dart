@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:ta_calc/models/operations/abstract/reg_operation.dart';
 
+///Item for displaying history of calculation.
 class OperationItem extends StatelessWidget {
-  final List<int> codes;
-  final RegOpeartion operation;
+  final String source;
+  final String result;
 
   const OperationItem({
     Key? key,
-    required this.codes,
-    required this.operation,
+    required this.source,
+    required this.result,
   }) : super(key: key);
 
   @override
@@ -18,16 +18,16 @@ class OperationItem extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            codes.toString(),
+            source,
             style: TextStyle(
               color: Colors.grey,
-              fontSize: 12,
+              fontSize: 16,
             ),
           ),
           Text(
-            operation.getOpeartionView(),
+            result,
             style: TextStyle(
-              fontSize: 14,
+              fontSize: 18,
             ),
           ),
         ],

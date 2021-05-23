@@ -5,7 +5,7 @@ class StopOpeartion extends RegOpeartion {
   static const int _weight = 5;
   StopOpeartion({required int pos}) : super(position: pos, weight: _weight);
   @override
-  String getOpeartionView() {
+  String toString() {
     return "$position: stop.";
   }
 

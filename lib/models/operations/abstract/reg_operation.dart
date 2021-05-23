@@ -13,7 +13,7 @@ abstract class RegOpeartion {
   RegOpeartion({required this.position, required this.weight});
 
   ///Returns a "code-like" view of this operation
-  String getOpeartionView();
+  String toString();
 
   ///Returns the presentation for calculating it's code
   List<int> getNumberOpeartion();

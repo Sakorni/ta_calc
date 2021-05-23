@@ -23,7 +23,7 @@ class IfOperation extends VarOpeartion {
   }
 
   @override
-  String getOpeartionView() {
+  String toString() {
     return "$position: if ${getVarView()}(condition) goto $trueIndex else goto $falseIndex";
   }
 }

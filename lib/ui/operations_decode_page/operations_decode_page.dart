@@ -23,25 +23,20 @@ class _OperationsDecodePageState extends State<OperationsDecodePage> {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider.value(
       value: provider,
-      child: LayoutBuilder(builder: (context, constraints) {
-        return PageView(
-          children: [
-            Container(
-              // constraints: BoxConstraints(maxHeight: constraints.maxHeight),
-              child: NumPad(
-                calcMode: CalcMode.decode,
-                onDone: provider.decode,
-              ),
-            ),
-            Container(
-                // height: constraints.maxHeight * (3 / 8),
-                // width: double.infinity,
-                decoration:
-                    BoxDecoration(border: Border.all(style: BorderStyle.solid)),
-                child: ResultWindow()),
-          ],
-        );
-      }),
+      child: PageView(
+        children: [
+          NumPad(
+            calcMode: CalcMode.decode,
+            onDone: provider.decode,
+          ),
+          DecoratedBox(
+            decoration: BoxDecoration(
+                // border: Border.all(style: BorderStyle.solid),
+                ),
+            child: ResultWindow(),
+          ),
+        ],
+      ),
     );
   }
 }

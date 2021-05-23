@@ -5,17 +5,16 @@ import 'package:ta_calc/resources/exceptions.dart';
 
 class DecodeProvider with ChangeNotifier {
   Calculator _calc = Calculator();
-  List<List<int>> codes = [];
-  List<RegOpeartion> operations = [];
+  List<String> sources = [];
+  List<String> results = [];
 
   void decode(String number) {
     try {
       var bigInt = BigInt.tryParse(number) ?? BigInt.one;
       var newCode = _calc.decode(bigInt);
-      codes.add(newCode);
-      operations.add(
-        RegOpeartion.fromList(newCode),
-      );
+      var operation = RegOpeartion.fromList(newCode);
+      sources.add(number);
+      results.add("$newCode\n$operation");
     } on InvalidCode {
       print("Invalid code");
     }
@@ -23,8 +22,8 @@ class DecodeProvider with ChangeNotifier {
   }
 
   void reset() {
-    codes.clear();
-    operations.clear();
+    sources.clear();
+    results.clear();
     notifyListeners();
   }
 }
