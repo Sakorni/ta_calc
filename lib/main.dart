@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ta_calc/models/decoder/code_to_list_and_operation_decoder.dart';
 import 'package:ta_calc/models/decoder/code_to_list_decoder.dart';
 import 'package:ta_calc/models/decoder/list_to_code_decoder.dart';
@@ -6,6 +7,10 @@ import 'package:ta_calc/resources/enums.dart';
 import 'package:ta_calc/ui/operations_decode_page/operations_decode_page.dart';
 
 void main() {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   runApp(MyApp());
 }
 
@@ -28,10 +33,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyColor extends MaterialStateColor {
-  const MyColor() : super(_defaultColor);
-
-  static const int _defaultColor = 0xcafefeed;
-  static const int _pressedColor = 0xdeadbeef;
+  const MyColor() : super(0xFFEEEEEE);
 
   @override
   Color resolve(Set<MaterialState> states) {

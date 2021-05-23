@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:ta_calc/models/decoder/code_to_list_and_operation_decoder.dart';
 import 'package:ta_calc/models/decoder/decoder_delegate.dart';
 import 'package:ta_calc/resources/enums.dart';
 import 'package:ta_calc/ui/calcPage/calcPage.dart';

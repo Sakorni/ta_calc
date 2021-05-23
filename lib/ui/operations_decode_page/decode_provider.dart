@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:ta_calc/models/calculator.dart';
+
 import 'package:ta_calc/models/decoder/decoder_delegate.dart';
-import 'package:ta_calc/models/operations/abstract/reg_operation.dart';
+
 import 'package:ta_calc/resources/exceptions.dart';
 
 class DecodeProvider with ChangeNotifier {
