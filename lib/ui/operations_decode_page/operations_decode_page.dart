@@ -24,21 +24,21 @@ class _OperationsDecodePageState extends State<OperationsDecodePage> {
     return ChangeNotifierProvider.value(
       value: provider,
       child: LayoutBuilder(builder: (context, constraints) {
-        return ListView(
+        return PageView(
           children: [
             Container(
-                height: constraints.maxHeight * (3 / 8),
-                width: double.infinity,
-                decoration:
-                    BoxDecoration(border: Border.all(style: BorderStyle.solid)),
-                child: ResultWindow()),
-            Container(
-              constraints: BoxConstraints(maxHeight: constraints.maxHeight),
+              // constraints: BoxConstraints(maxHeight: constraints.maxHeight),
               child: NumPad(
                 calcMode: CalcMode.decode,
                 onDone: provider.decode,
               ),
             ),
+            Container(
+                // height: constraints.maxHeight * (3 / 8),
+                // width: double.infinity,
+                decoration:
+                    BoxDecoration(border: Border.all(style: BorderStyle.solid)),
+                child: ResultWindow()),
           ],
         );
       }),

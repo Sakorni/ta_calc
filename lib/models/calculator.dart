@@ -20,7 +20,7 @@ class Calculator {
 
     for (int i = 0; code != BigInt.one; ++i) {
       int counter = 0;
-      if (BigInt.from(primes[i]) > code) {
+      if (i >= primes.length || BigInt.from(primes[i]) > code) {
         throw InvalidCode();
       }
       while (code % BigInt.from(primes[i]) == BigInt.zero) {
