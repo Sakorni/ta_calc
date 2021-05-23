@@ -43,9 +43,33 @@ class MyColor extends MaterialStateColor {
   @override
   Color resolve(Set<MaterialState> states) {
     if (states.contains(MaterialState.pressed)) {
-      return Colors.grey[200]!;
+      return Colors.green[200]!;
     }
     return Colors.white;
+  }
+}
+
+class DoneButtonColor extends MaterialStateColor {
+  const DoneButtonColor() : super(0xFF4CAF50);
+
+  @override
+  Color resolve(Set<MaterialState> states) {
+    if (states.contains(MaterialState.pressed)) {
+      return Colors.green[200]!;
+    }
+    return Colors.green;
+  }
+}
+
+class CancelButtonColor extends MaterialStateColor {
+  const CancelButtonColor() : super(0xFFEEEEEE);
+
+  @override
+  Color resolve(Set<MaterialState> states) {
+    if (states.contains(MaterialState.pressed)) {
+      return Colors.red[200]!;
+    }
+    return Colors.red;
   }
 }
 

@@ -13,29 +13,21 @@ class NumPad extends StatelessWidget {
     var provider = CalcPageProvider(onDone: onDone, calcMode: calcMode);
     return ChangeNotifierProvider.value(
       value: provider,
-      child: Column(
-        children: [
-          InputField(),
-          Expanded(
-            child: CalcButtons(),
+      child: SizedBox(
+        height: 700,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxHeight: 600),
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              InputField(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: CalcButtons(),
+              ),
+            ],
           ),
-          Padding(
-            padding: EdgeInsets.all(20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                CalculatorButton(
-                  label: 'C',
-                  onTap: provider.deleteAllPressed,
-                ),
-                CalculatorButton(
-                  label: '=',
-                  onTap: provider.calculate,
-                ),
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -135,13 +127,45 @@ class CalcButtons extends StatelessWidget {
         onTap: provider.deletePressed,
       ),
     );
-    return GridView.count(
-      crossAxisCount: 3,
-      padding: const EdgeInsets.all(20),
-      childAspectRatio: (1.5),
-      mainAxisSpacing: 10,
-      crossAxisSpacing: 10,
-      children: buttons,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        GridView.count(
+          shrinkWrap: true,
+          crossAxisCount: 3,
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          childAspectRatio: (1.5),
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 10,
+          children: buttons,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Expanded(
+              child: AspectRatio(
+                aspectRatio: 1.5,
+                child: CalculatorButton(
+                  type: ButtonType.cancel,
+                  label: 'C',
+                  onTap: provider.deleteAllPressed,
+                ),
+              ),
+            ),
+            Spacer(),
+            Expanded(
+              child: AspectRatio(
+                aspectRatio: 1.5,
+                child: CalculatorButton(
+                  type: ButtonType.done,
+                  label: '=',
+                  onTap: provider.calculate,
+                ),
+              ),
+            ),
+          ],
+        )
+      ],
     );
   }
 }
