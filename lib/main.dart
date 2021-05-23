@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:ta_calc/models/decoder/code_to_list_and_operation_decoder.dart';
 import 'package:ta_calc/models/decoder/code_to_list_decoder.dart';
 import 'package:ta_calc/models/decoder/list_to_code_decoder.dart';
+import 'package:ta_calc/resources/colors.dart';
 import 'package:ta_calc/resources/enums.dart';
 import 'package:ta_calc/resources/strings.dart';
 import 'package:ta_calc/ui/operations_decode_page/operations_decode_page.dart';
@@ -43,7 +44,7 @@ class MyColor extends MaterialStateColor {
   @override
   Color resolve(Set<MaterialState> states) {
     if (states.contains(MaterialState.pressed)) {
-      return Colors.green[200]!;
+      return AppColors.mainColor;
     }
     return Colors.white;
   }
@@ -55,9 +56,9 @@ class DoneButtonColor extends MaterialStateColor {
   @override
   Color resolve(Set<MaterialState> states) {
     if (states.contains(MaterialState.pressed)) {
-      return Colors.green[200]!;
+      return AppColors.mainColor;
     }
-    return Colors.green;
+    return Colors.green.withAlpha(AppColors.aplpha);
   }
 }
 
@@ -69,7 +70,7 @@ class CancelButtonColor extends MaterialStateColor {
     if (states.contains(MaterialState.pressed)) {
       return Colors.red[200]!;
     }
-    return Colors.red;
+    return Colors.red.withAlpha(AppColors.aplpha);
   }
 }
 

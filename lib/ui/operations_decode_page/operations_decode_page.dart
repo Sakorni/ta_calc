@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ta_calc/models/decoder/decoder_delegate.dart';
+import 'package:ta_calc/resources/colors.dart';
 import 'package:ta_calc/resources/enums.dart';
 import 'package:ta_calc/ui/calcPage/calcPage.dart';
 import 'package:ta_calc/ui/operations_decode_page/decode_provider.dart';
@@ -47,7 +48,7 @@ class _OperationsDecodePageState extends State<OperationsDecodePage> {
               SnackBar(
                 content: Text(provider.exceptionCaption),
                 duration: Duration(seconds: 1),
-                backgroundColor: Colors.green[200]!.withOpacity(0.7),
+                backgroundColor: AppColors.mainColor.withOpacity(0.7),
               ),
             );
           }
