@@ -5,12 +5,20 @@ import 'package:ta_calc/ui/calcPage/calc_page_provider.dart';
 import 'button/button.dart';
 
 class NumPad extends StatelessWidget {
-  final void Function(String) onDone;
+  ///Function that calls when user tap on equal sign button
+  final OnDoneAction onDone;
+
+  ///Define calc mode
   final CalcMode calcMode;
-  NumPad({required this.onDone, required this.calcMode});
+
+  ///Calls when user tap on cancelAll button
+  final OnCancelAction onCancel;
+  NumPad(
+      {required this.onDone, required this.calcMode, required this.onCancel});
   @override
   Widget build(BuildContext context) {
-    var provider = CalcPageProvider(onDone: onDone, calcMode: calcMode);
+    var provider = CalcPageProvider(
+        onDone: onDone, calcMode: calcMode, onCancel: onCancel);
     return ChangeNotifierProvider.value(
       value: provider,
       child: SizedBox(

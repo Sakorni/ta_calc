@@ -60,6 +60,7 @@ class _OperationsDecodePageState extends State<OperationsDecodePage> {
           NumPad(
             calcMode: widget.calcMode,
             onDone: provider.decode,
+            onCancel: provider.reset,
           ),
           ResultWindow(),
         ],
