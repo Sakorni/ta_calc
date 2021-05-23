@@ -41,10 +41,13 @@ class _OperationsDecodePageState extends State<OperationsDecodePage> {
       builder: (context, child) {
         provider.exceptions.listen((event) {
           if (event) {
+            var messenger = ScaffoldMessenger.of(context);
+            messenger.hideCurrentSnackBar();
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(provider.exceptionCaption),
-                backgroundColor: Colors.grey.withOpacity(0.5),
+                duration: Duration(seconds: 1),
+                backgroundColor: Colors.green[200]!.withOpacity(0.7),
               ),
             );
           }
