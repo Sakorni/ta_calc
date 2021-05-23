@@ -42,7 +42,7 @@ class _OperationsDecodePageState extends State<OperationsDecodePage> {
       child: PageView(
         children: [
           NumPad(
-            calcMode: CalcMode.decode,
+            calcMode: widget.calcMode,
             onDone: provider.decode,
           ),
           ResultWindow(),

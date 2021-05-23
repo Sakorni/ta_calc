@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ta_calc/models/decoder/code_to_list_and_operation_decoder.dart';
 import 'package:ta_calc/models/decoder/code_to_list_decoder.dart';
+import 'package:ta_calc/models/decoder/list_to_code_decoder.dart';
 import 'package:ta_calc/resources/enums.dart';
 import 'package:ta_calc/ui/operations_decode_page/operations_decode_page.dart';
 
@@ -41,23 +42,105 @@ class MyColor extends MaterialStateColor {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final List<String> titles = [];
+
+  final Widget listToCode = OperationsDecodePage(
+    calcMode: CalcMode.encode,
+    decoderDelegate: ListToCodeDecoder(),
+  );
+
+  final Widget codeToList = OperationsDecodePage(
+    calcMode: CalcMode.decode,
+    decoderDelegate: CodeToListDecoder(),
+  );
+
+  final Widget codeToListAndOpers = OperationsDecodePage(
+    calcMode: CalcMode.decode,
+    decoderDelegate: CodeToListAndOperation(),
+  );
+
+  int index = 0;
+
+  void changeIndex(int value) {
+    assert(value >= 0 && value < titles.length);
+    setState(() {
+      index = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: CalculatorDrawer(
+        titles: titles,
+        onItemTapped: changeIndex,
+      ),
       appBar: AppBar(
-        title: Text('ТА калькулятор'),
+        title: Text(titles[index]),
         backgroundColor: Colors.green,
       ),
-      body: OperationsDecodePage(
-        calcMode: CalcMode.decode,
-        decoderDelegate: CodeToListDecoder(),
+      body: IndexedStack(
+        children: [
+          listToCode,
+          codeToList,
+          codeToListAndOpers,
+        ],
+        index: index,
       ),
-      // body: NumPad(
-      //   onDone: (_) {},
-      //   calcMode: CalcMode.decode,
-      // ),
-      // body: NumPad(),
+    );
+  }
+}
+
+class CalculatorDrawer extends StatelessWidget {
+  final List<String> titles;
+  final void Function(int index) onItemTapped;
+
+  const CalculatorDrawer(
+      {Key? key, required this.titles, required this.onItemTapped})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        children: [
+          DrawerHeader(
+            child: Center(child: Text("Лучшая навигация")),
+            decoration: BoxDecoration(
+              color: Colors.green,
+            ),
+            padding: EdgeInsets.zero,
+          ),
+          ListTile(
+              leading: Icon(Icons.calculate_outlined),
+              title: Text(titles[0]),
+              onTap: () {
+                onItemTapped(0);
+                Navigator.pop(context);
+              }),
+          ListTile(
+              leading: Icon(Icons.calculate_rounded),
+              title: Text(
+                titles[1],
+              ),
+              onTap: () {
+                onItemTapped(1);
+                Navigator.pop(context);
+              }),
+          ListTile(
+              leading: Icon(Icons.calculate),
+              title: Text(titles[2]),
+              onTap: () {
+                onItemTapped(2);
+                Navigator.pop(context);
+              }),
+        ],
+      ),
     );
   }
 }
