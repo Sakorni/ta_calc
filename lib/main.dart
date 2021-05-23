@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
             backgroundColor: MyColor(),
+            overlayColor: MyColor(),
           ),
         ),
       ),

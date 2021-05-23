@@ -38,6 +38,19 @@ class _OperationsDecodePageState extends State<OperationsDecodePage> {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider.value(
       value: provider,
+      builder: (context, child) {
+        provider.exceptions.listen((event) {
+          if (event) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(provider.exceptionCaption),
+                backgroundColor: Colors.grey.withOpacity(0.5),
+              ),
+            );
+          }
+        });
+        return child!;
+      },
       child: PageView(
         children: [
           NumPad(

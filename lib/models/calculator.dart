@@ -27,6 +27,9 @@ class Calculator {
         code ~/= BigInt.from(primes[i]);
         counter++;
       }
+      if (counter == 0) {
+        throw InvalidCode();
+      }
       res.add(counter - 1);
     }
     return res;

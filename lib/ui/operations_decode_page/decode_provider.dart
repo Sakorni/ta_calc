@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 
 import 'package:ta_calc/models/decoder/decoder_delegate.dart';
@@ -8,7 +10,9 @@ class DecodeProvider with ChangeNotifier {
   final DecoderDelegate delegate;
   List<String> sources = [];
   List<String> results = [];
-  bool exceptionThrown = false;
+  StreamController<bool> _exceptionStream =
+      StreamController.broadcast(onListen: () => false);
+  Stream<bool> get exceptions => _exceptionStream.stream;
   String exceptionCaption = "";
 
   DecodeProvider(this.delegate);
@@ -21,16 +25,21 @@ class DecodeProvider with ChangeNotifier {
         results.add(res);
       }
     } on InvalidCode catch (e) {
-      exceptionThrown = true;
+      _exceptionStream.add(true);
       exceptionCaption = e.message;
+    } finally {
+      notifyListeners();
     }
-    notifyListeners();
-    exceptionThrown = false;
   }
 
   void reset() {
     sources.clear();
     results.clear();
     notifyListeners();
+  }
+
+  void dispose() {
+    _exceptionStream.close();
+    super.dispose();
   }
 }

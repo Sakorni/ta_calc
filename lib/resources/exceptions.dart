@@ -1,3 +1,4 @@
 class InvalidCode implements Exception {
-  String message = "Invalid code";
+  String message;
+  InvalidCode([this.message = "Invalid code"]);
 }
