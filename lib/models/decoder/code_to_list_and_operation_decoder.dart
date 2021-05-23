@@ -1,12 +1,14 @@
 import 'package:ta_calc/models/calculator.dart';
 import 'package:ta_calc/models/decoder/decoder_delegate.dart';
+import 'package:ta_calc/models/operations/abstract/reg_operation.dart';
 
-class CodeToListDecoder implements DecoderDelegate {
+class CodeToListAndOperation extends DecoderDelegate {
   Calculator _calc = Calculator();
   @override
   String calc(String source) {
     var bigInt = BigInt.tryParse(source) ?? BigInt.one;
     var code = _calc.decode(bigInt);
-    return "$code\n";
+    var operation = RegOpeartion.fromList(code);
+    return "$code\n$operation";
   }
 }
