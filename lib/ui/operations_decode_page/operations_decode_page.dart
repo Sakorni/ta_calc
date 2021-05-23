@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ta_calc/models/decoder/code_to_list_decoder.dart';
 import 'package:ta_calc/resources/enums.dart';
 import 'package:ta_calc/ui/calcPage/calcPage.dart';
 import 'package:ta_calc/ui/operations_decode_page/decode_provider.dart';
@@ -11,7 +12,7 @@ class OperationsDecodePage extends StatefulWidget {
 }
 
 class _OperationsDecodePageState extends State<OperationsDecodePage> {
-  final DecodeProvider provider = DecodeProvider();
+  final DecodeProvider provider = DecodeProvider(CodeToListAndOperation());
 
   @override
   void dispose() {
