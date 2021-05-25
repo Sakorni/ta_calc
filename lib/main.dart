@@ -6,6 +6,7 @@ import 'package:ta_calc/models/decoder/list_to_code_decoder.dart';
 import 'package:ta_calc/resources/colors.dart';
 import 'package:ta_calc/resources/enums.dart';
 import 'package:ta_calc/resources/strings.dart';
+import 'package:ta_calc/ui/machine_page/machine_page.dart';
 import 'package:ta_calc/ui/operations_decode_page/operations_decode_page.dart';
 
 void main() {
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         ]);
         return child!;
       },
-      home: MyHomePage(),
+      home: MachineCodePage(),
     );
   }
 }

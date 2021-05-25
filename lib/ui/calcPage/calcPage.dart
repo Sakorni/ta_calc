@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ta_calc/resources/enums.dart';
+import 'package:ta_calc/ui/button/button.dart';
 import 'package:ta_calc/ui/calcPage/calc_page_provider.dart';
-import 'button/button.dart';
 
 class NumPad extends StatelessWidget {
   ///Function that calls when user tap on equal sign button
