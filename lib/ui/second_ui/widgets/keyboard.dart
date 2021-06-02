@@ -9,7 +9,7 @@ class KeyBoard extends StatelessWidget {
     var calc = context.watch<SecondProvider>();
     return GridButton(
         textStyle: TextStyle(
-            color: Colors.black, fontSize: 24, fontFamily: "RobotoMono"),
+            color: Colors.black, fontSize: 22, fontFamily: "RobotoMono"),
         onPressed: (val) {
           ScaffoldMessenger.of(context).hideCurrentSnackBar();
           FocusScope.of(context).unfocus();
