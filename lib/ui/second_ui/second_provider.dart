@@ -42,7 +42,9 @@ class SecondProvider with ChangeNotifier {
         case "=":
           {
             if (line.isNotEmpty && !line.contains(',')) {
-              line = calc.doCalc(line);
+              if (BigInt.tryParse(line) == null) {
+                line = calc.doCalc(line);
+              }
             }
           }
           break;
