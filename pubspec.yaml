@@ -23,6 +23,7 @@ dependencies:
   flutter:
     sdk: flutter 
   provider: ^5.0.0
+  flutter_grid_button: ^2.0.0
 
 
   cupertino_icons: ^1.0.2
