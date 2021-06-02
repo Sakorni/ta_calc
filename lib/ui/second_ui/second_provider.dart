@@ -1,57 +1,33 @@
 import 'package:flutter/cupertino.dart';
+import 'package:ta_calc/models/BI_calc.dart';
 import 'package:ta_calc/models/decoder/code_to_list_decoder.dart';
 import 'package:ta_calc/models/decoder/list_to_code_decoder.dart';
 
 class SecondProvider with ChangeNotifier {
-  String str = "";
+  String line = "";
   String ans = "";
   ListToCodeDecoder listCodeDecoder = ListToCodeDecoder();
   CodeToListDecoder codeToListDecoder = CodeToListDecoder();
+  BICalc calc = BICalc();
+
   void buttonPressed(String button) {
     int? t = int.tryParse(button);
     if (t != null) {
-      str += button;
+      line += button;
     } else {
       switch (button) {
-        case "%":
-          break;
-        case "CE":
-          str = "";
-          break;
-        case "C":
-          str = "";
-          break;
-        case "⌫":
-          str = str.substring(0, str.length - 1);
-          break;
-        case "1/x":
-          break;
-        case "^":
-          break;
-        case "⌫":
-          break;
-        case "√":
-          break;
-        case "/":
-          break;
-        case "×":
-          break;
-        case "-":
-          break;
-        case "+":
-          break;
         case ",":
-          if (!str.endsWith(",") & (str.isNotEmpty)) {
-            str += ",";
+          if (!line.endsWith(",") & (line.isNotEmpty)) {
+            line += ",";
           }
           break;
         case "=":
           break;
         case "listToCode":
-          ans = listCodeDecoder.calc(str);
+          ans = listCodeDecoder.calc(line);
           break;
         case "codeToList":
-          ans = codeToListDecoder.calc(str);
+          ans = codeToListDecoder.calc(line);
           break;
         case "codeToOpers":
           break;

@@ -5,3 +5,8 @@ class AppStrings {
   static const codeToList = "xxxxx -> [x, x, x]";
   static const codeToOpers = " xxxxx -> RegMachine commands";
 }
+
+class CalcStrings {
+  CalcStrings._();
+  static const invalid = "Invalid input";
+}
