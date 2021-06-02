@@ -30,10 +30,18 @@ class KeyBoard extends StatelessWidget {
         items: [
           [
             GridButtonItem(
-              title: "⌫",
+              title: "√",
+              value: "",
             ),
             GridButtonItem(
               title: "C",
+            ),
+            GridButtonItem(
+              title: "CE",
+              value: "C",
+            ),
+            GridButtonItem(
+              title: "⌫",
             ),
           ],
           [
@@ -45,6 +53,10 @@ class KeyBoard extends StatelessWidget {
             ),
             GridButtonItem(
               title: "%",
+            ),
+            GridButtonItem(
+              title: "1/x",
+              value: "",
             ),
           ],
           [
@@ -77,7 +89,10 @@ class KeyBoard extends StatelessWidget {
               title: "6",
               color: Colors.white,
             ),
-            GridButtonItem(title: "-", longPressValue: "listToCode"),
+            GridButtonItem(
+              title: "-",
+              longPressValue: "listToCode",
+            ),
           ],
           [
             GridButtonItem(
