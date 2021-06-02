@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:ta_calc/models/BI_calc.dart';
+
 import 'package:ta_calc/models/decoder/code_to_list_decoder.dart';
 import 'package:ta_calc/models/decoder/list_to_code_decoder.dart';
 
@@ -21,7 +22,16 @@ class SecondProvider with ChangeNotifier {
             line += ",";
           }
           break;
+        case "C":
+          line = "";
+          break;
+        case "⌫":
+          line = line.substring(0, line.length - 1);
+          break;
         case "=":
+          {
+            line = calc.doCalc(line);
+          }
           break;
         case "listToCode":
           ans = listCodeDecoder.calc(line);
@@ -31,6 +41,8 @@ class SecondProvider with ChangeNotifier {
           break;
         case "codeToOpers":
           break;
+        default:
+          line += button;
       }
     }
     notifyListeners();

@@ -14,8 +14,6 @@ class BICalc {
     var firstNumber = BigInt.tryParse(groups.group(1).toString());
     var operation = groups.group(2).toString();
     var secondNumber = BigInt.tryParse(groups.group(3).toString());
-    print(firstNumber);
-    print(secondNumber);
     if (firstNumber == null || secondNumber == null) {
       return CalcStrings.invalid;
     } else {

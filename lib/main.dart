@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ta_calc/models/BI_calc.dart';
 import 'package:ta_calc/models/decoder/code_to_list_and_operation_decoder.dart';
 import 'package:ta_calc/models/decoder/code_to_list_decoder.dart';
 import 'package:ta_calc/models/decoder/list_to_code_decoder.dart';
 import 'package:ta_calc/resources/colors.dart';
 import 'package:ta_calc/resources/enums.dart';
 import 'package:ta_calc/resources/strings.dart';
-import 'package:ta_calc/ui/machine_page/machine_page.dart';
+
 import 'package:ta_calc/ui/operations_decode_page/operations_decode_page.dart';
+import 'package:ta_calc/ui/second_ui/second_calc_page.dart';
 
 void main() {
-  BICalc calc = BICalc();
-  calc.doCalc("1+2");
   runApp(MyApp());
 }
 
@@ -37,7 +35,7 @@ class MyApp extends StatelessWidget {
         ]);
         return child!;
       },
-      home: MachineCodePage(),
+      home: CalcPage(),
     );
   }
 }
