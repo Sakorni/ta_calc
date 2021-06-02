@@ -9,4 +9,5 @@ class AppStrings {
 class CalcStrings {
   CalcStrings._();
   static const invalid = "Invalid input";
+  static const transform = "transform";
 }

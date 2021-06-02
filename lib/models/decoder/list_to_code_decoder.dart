@@ -5,7 +5,7 @@ class ListToCodeDecoder implements DecoderDelegate {
   Calculator _calc = Calculator();
   List<int> decode(String source) {
     return List<int>.from(
-      source.replaceAll(RegExp(r"\[|\]"), "").split(", ").map(
+      source.replaceAll(RegExp(r"\[|\]"), "").split(",").map(
             (e) => int.parse(e),
           ),
     );

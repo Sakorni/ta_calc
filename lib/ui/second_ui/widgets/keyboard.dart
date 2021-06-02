@@ -1,31 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_grid_button/flutter_grid_button.dart';
 import 'package:provider/provider.dart';
+import 'package:ta_calc/resources/strings.dart';
 import 'package:ta_calc/ui/second_ui/second_provider.dart';
 
 class KeyBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var calc = context.watch<SecondProvider>();
+    var messenger = ScaffoldMessenger.of(context);
+    calc.results.listen(
+      (result) {
+        if (result.isNotEmpty) {
+          messenger.hideCurrentSnackBar();
+          messenger.showSnackBar(
+            SnackBar(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              content: Text(result),
+              duration: Duration(seconds: 5),
+              backgroundColor: Colors.grey[800]!.withOpacity(0.7),
+            ),
+          );
+        }
+      },
+    );
     return GridButton(
         textStyle: TextStyle(
             color: Colors.black, fontSize: 22, fontFamily: "RobotoMono"),
         onPressed: (val) {
-          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          messenger.hideCurrentSnackBar();
           FocusScope.of(context).unfocus();
           calc.buttonPressed(val);
-          if (val == "codeToList" || val == "listToCode") {
-            final sb = SnackBar(
-              content: InkWell(
-                child: Text(calc.ans),
-                onTap: () {
-                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                },
-              ),
-              duration: Duration(seconds: 10),
-            );
-            ScaffoldMessenger.of(context).showSnackBar(sb);
-          }
         },
         items: [
           [
@@ -91,7 +96,6 @@ class KeyBoard extends StatelessWidget {
             ),
             GridButtonItem(
               title: "-",
-              longPressValue: "listToCode",
             ),
           ],
           [
@@ -109,7 +113,6 @@ class KeyBoard extends StatelessWidget {
             ),
             GridButtonItem(
               title: "+",
-              longPressValue: "codeToList",
             ),
           ],
           [
@@ -129,7 +132,7 @@ class KeyBoard extends StatelessWidget {
                 title: "=",
                 color: Colors.blue,
                 textStyle: TextStyle(color: Colors.white, fontSize: 24),
-                longPressValue: "codeToOpers"),
+                longPressValue: CalcStrings.transform),
           ],
         ]);
   }
