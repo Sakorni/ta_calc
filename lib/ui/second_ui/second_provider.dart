@@ -41,7 +41,9 @@ class SecondProvider with ChangeNotifier {
           break;
         case "=":
           {
-            line = calc.doCalc(line);
+            if (line.isNotEmpty && !line.contains(',')) {
+              line = calc.doCalc(line);
+            }
           }
           break;
         case CalcStrings.transform:
